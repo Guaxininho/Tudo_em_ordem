@@ -74,23 +74,7 @@ function Notes() {
         renderizandoItems();
     }, []);
 
-    // Atualização do card escolhido (update)
-    //================================================================
-    // const [editingItemId, setEditingItemId] = useState<number | null>(null); // Estado para controlar o ID do item em edição
-    // const atualizandoItem = (itemId: number) => {
-    //     axiosClient
-    //         .put(`item/${itemId}`)
-    //         .then(() => {
-    //             renderizandoItems();
-    //             setEditingItemId(null); // Desativa o modo de edição após a atualização
-    //         })
-    //         .catch((error) => {
-    //             console.error("Erro ao tentar atualizar:", error);
-    //         });
-    // };
-    // // axiosClient.put(`item/${idEscolhido}`).then((response)=>{
-    // //     console.log(response)
-    // // });
+    // Atualização e exclusão estão no componente Card (update, delete)
 
     return (
         <>
@@ -121,9 +105,11 @@ function Notes() {
             ) : (
                 items.map((item) => (
                     <Card
+                        id={item.id}
                         key={item.id}
                         nome={item.nome}
                         descricao={item.descricao}
+                        func={renderizandoItems}
                     />
                 ))
             )}

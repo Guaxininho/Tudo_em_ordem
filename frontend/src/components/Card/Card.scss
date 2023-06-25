@@ -20,10 +20,18 @@
         padding-left: 1rem;
         font-size: 2rem;
         outline: none;
+        display: block;
+        width: 80%;
     }
 
     .edicaoDescricao {
+        margin-top: 2rem;
+        line-height: 4rem;
+        padding-left: 1rem;
+        font-size: 2rem;
+        outline: none;
         resize: none;
+        width: 80%;
     }
 
     p {

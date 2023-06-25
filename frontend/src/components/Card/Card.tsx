@@ -1,12 +1,17 @@
+import React, { KeyboardEvent } from "react";
 import { useState } from "react";
 import "./Card.scss";
 import lapis from "./lapis.png";
 import lixeira from "./lixeira.png";
 import salvar from "./salvar.png";
+import axiosClient from "../../axios-client";
 
 interface CardProps {
+    id: number;
     nome: string;
     descricao: string;
+    onSalvarClick?: () => void;
+    func: any;
 }
 
 function Card(props: CardProps) {
@@ -29,18 +34,46 @@ function Card(props: CardProps) {
     };
 
     const handleSalvarClick = () => {
+        const data = {
+            item: {
+                nome: nomeEditavel,
+                descricao: descricaoEditavel,
+            },
+        };
+
+        axiosClient
+            .put(`item/${props.id}`, data)
+            .then(() => {
+                console.log("Atualizado com sucesso");
+                console.log(data);
+                console.log(`Este é o id que ta saindo: ${props.id}`);
+                props.func();
+            })
+            .catch((error) => {
+                console.error("Erro ao tentar atualizar:", error);
+            });
         // Aqui você pode fazer qualquer ação necessária para salvar a descrição
         // Por exemplo, enviar uma requisição HTTP para atualizar os dados no servidor
         // ou chamar uma função passada como prop para atualizar o estado no componente pai
         // Neste exemplo, apenas atualizamos o estado do modo de edição
         setModoEdicao(false);
     };
+
+    const enterPressionado = (
+        e: KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+        if (e.key === "Enter") {
+            handleSalvarClick();
+        }
+    };
     return (
         <figure className="Card">
             {modoEdicao ? (
                 <input
+                    onKeyDown={enterPressionado}
                     className="edicaoTitulo"
                     type="text"
+                    placeholder="Digite seu novo título aqui e clique na imagem do disquete para atualizar"
                     value={nomeEditavel}
                     onChange={handleNomeChange}
                     autoFocus
@@ -50,6 +83,9 @@ function Card(props: CardProps) {
             )}
             {modoEdicao ? (
                 <textarea
+                    onKeyDown={enterPressionado}
+                    rows={1}
+                    placeholder="Digite sua nova descrição aqui e clique na imagem do disquete para atualizar"
                     className="edicaoDescricao"
                     value={descricaoEditavel}
                     onChange={handleDescricaoChange}
