@@ -12,6 +12,8 @@ interface CardProps {
     descricao: string;
     onSalvarClick?: () => void;
     func: any;
+    att: any;
+    del: any;
 }
 
 function Card(props: CardProps) {
@@ -45,8 +47,7 @@ function Card(props: CardProps) {
             .put(`item/${props.id}`, data)
             .then(() => {
                 console.log("Atualizado com sucesso");
-                console.log(data);
-                console.log(`Este é o id que ta saindo: ${props.id}`);
+                props.att();
                 props.func();
             })
             .catch((error) => {
@@ -57,6 +58,19 @@ function Card(props: CardProps) {
         // ou chamar uma função passada como prop para atualizar o estado no componente pai
         // Neste exemplo, apenas atualizamos o estado do modo de edição
         setModoEdicao(false);
+    };
+
+    const handleDeleteClick = () => {
+        axiosClient
+            .delete(`item/${props.id}`)
+            .then(() => {
+                console.log("Deletado com sucesso");
+                props.del();
+                props.func();
+            })
+            .catch((error) => {
+                console.error("Erro ao tentar deletar:", error);
+            });
     };
 
     const enterPressionado = (
@@ -103,7 +117,7 @@ function Card(props: CardProps) {
                         <img src={lapis} alt="Editar" />
                     </button>
                 )}
-                <button>
+                <button onClick={handleDeleteClick}>
                     <img src={lixeira} alt="Excluir" />
                 </button>
             </div>

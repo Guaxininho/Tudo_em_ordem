@@ -6,7 +6,7 @@
     background-color: #ffb602;
     border-radius: 0.1rem;
     min-height: 15rem;
-    padding: 1rem;
+    padding: 1.5rem 2rem;
 
     h1 {
         color: #212529;
@@ -14,6 +14,8 @@
         text-transform: uppercase;
         font-size: 3rem;
         letter-spacing: 0.2rem;
+        max-width: fit-content;
+        text-shadow: 0.3px 0.7px 1px rgba(0, 0, 0, 0.6);
     }
     .edicaoTitulo {
         line-height: 4rem;

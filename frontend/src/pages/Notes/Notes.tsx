@@ -4,6 +4,7 @@ import ButtonCommon from "../../components/ButtonCommon/ButtonCommon";
 import Card from "../../components/Card/Card";
 import { FormEvent, useRef, useState } from "react";
 import axiosClient from "../../axios-client.ts";
+import Notificacao from "../../components/Notificacao/Notificacao.tsx";
 
 interface Item {
     id: number;
@@ -44,6 +45,7 @@ function Notes() {
                 .post("item/store", dados)
                 .then((response) => {
                     console.log("Foi postado com sucesso!", response);
+                    notificandoPost();
                     renderizandoItems();
                 })
                 .catch((error) => {
@@ -75,9 +77,53 @@ function Notes() {
     }, []);
 
     // Atualização e exclusão estão no componente Card (update, delete)
+    // Lógica para notificações que vem dos filhos
+    //================================================================
+    const [notificacaoPost, setnotificacaoPost] = useState(false);
+    const [notificacaoAtt, setnotificacaoAtt] = useState(false);
+    const [notificacaoDel, setnotificacaoDel] = useState(false);
+
+    const notificandoPost = () => {
+        setnotificacaoPost(true);
+        setTimeout(() => {
+            setnotificacaoPost(false);
+        }, 5000);
+    };
+
+    const notificandoAtt = () => {
+        setnotificacaoAtt(true);
+        setTimeout(() => {
+            setnotificacaoAtt(false);
+        }, 5000);
+    };
+
+    const notificandoDel = () => {
+        setnotificacaoDel(true);
+        setTimeout(() => {
+            setnotificacaoDel(false);
+        }, 5000);
+    };
 
     return (
-        <>
+        <div className="paginaCompleta">
+            {notificacaoPost ? (
+                <Notificacao
+                    mensagem="Post criado com sucesso!"
+                    cor="#e03131"
+                />
+            ) : undefined}
+            {notificacaoAtt ? (
+                <Notificacao
+                    mensagem="Post atualizado com sucesso!"
+                    cor="#e03131"
+                />
+            ) : undefined}
+            {notificacaoDel ? (
+                <Notificacao
+                    mensagem="Post deletado com sucesso!"
+                    cor="#e03131"
+                />
+            ) : undefined}
             <form onSubmit={submit} className="novoFormulario" action="">
                 <input
                     value={nomeValor}
@@ -110,10 +156,12 @@ function Notes() {
                         nome={item.nome}
                         descricao={item.descricao}
                         func={renderizandoItems}
+                        att={notificandoAtt}
+                        del={notificandoDel}
                     />
                 ))
             )}
-        </>
+        </div>
     );
 }
 
