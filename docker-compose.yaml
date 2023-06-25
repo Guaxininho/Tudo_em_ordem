@@ -1,0 +1,47 @@
+version: "3"
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - ./frontend:/frontend
+    env_file:
+      - ./frontend/.env
+    # networks:
+    #   - app-network
+  mysql:
+    image: mysql:5.7.22
+    container_name: mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: laraone
+      MYSQL_USER: laraone_user
+      MYSQL_PASSWORD: secret
+      MYSQL_ROOT_PASSWORD: secret
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - laravel
+  php:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: php
+    volumes:
+      - ./backend:/var/www/html
+    depends_on:
+      - mysql
+    ports:
+      - "8000:8000"
+    networks:
+      - laravel
+networks:
+  laravel:

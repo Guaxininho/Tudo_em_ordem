@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.novoFormulario {
+  border-radius: 0.5rem;
+  margin-top: 2rem;
+  background-color: #ffb602;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  font-family: "Roboto Mono", monospace;
+  gap: 1.5rem;
+  input {
+    line-height: 4rem;
+    padding-left: 1rem;
+    font-size: 2rem;
+    outline: none;
+  }
+  .botoesForm {
+    display: flex;
+    gap: 0.5rem;
+  }
+}

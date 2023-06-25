@@ -1,0 +1,20 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.Erro {
+  height: 100vh;
+  p {
+    text-align: center;
+    font-size: 6rem;
+    font-family: "Roboto Mono", monospace;
+    max-width: 70rem;
+    margin: 0rem auto;
+    padding-top: 3rem;
+  }
+  .estudante {
+    width: 40%;
+    position: absolute;
+    top: 100%;
+    left: 100%;
+    transform: translate(-100%, -100%);
+  }
+}

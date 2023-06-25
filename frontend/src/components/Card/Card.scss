@@ -1,0 +1,57 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+
+.Card {
+    position: relative;
+    margin-top: 2rem;
+    background-color: #ffb602;
+    border-radius: 0.1rem;
+    min-height: 15rem;
+    padding: 1rem;
+
+    h1 {
+        color: #212529;
+        font-family: "Roboto Mono", monospace;
+        text-transform: uppercase;
+        font-size: 3rem;
+        letter-spacing: 0.2rem;
+    }
+    .edicaoTitulo {
+        line-height: 4rem;
+        padding-left: 1rem;
+        font-size: 2rem;
+        outline: none;
+    }
+
+    .edicaoDescricao {
+        resize: none;
+    }
+
+    p {
+        margin-top: 2rem;
+        color: #212529;
+        font-size: 2.2rem;
+        font-family: "Roboto Mono", monospace;
+    }
+
+    .flexBotaoCard {
+        position: absolute;
+        top: 10px;
+        left: 100%;
+        transform: translateX(-100%);
+        display: flex;
+        gap: 2rem;
+        button {
+            width: 50px;
+            background-color: transparent;
+            border: none;
+            transition: 0.2s;
+            &:hover {
+                width: 55px;
+                cursor: pointer;
+            }
+            img {
+                width: 100%;
+            }
+        }
+    }
+}

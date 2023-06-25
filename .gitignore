@@ -1,0 +1,20 @@
+# Arquivos e diretórios específicos do Frontend
+frontend/node_modules/
+frontend/build/
+
+# Arquivos e diretórios específicos do Backend
+backend/node_modules/
+backend/build/
+
+# Arquivos e diretórios específicos do MySQL
+mysql/data/
+mysql/*.log
+
+# Arquivos de configuração sensíveis
+backend/config/config.js
+backend/config/database.js
+
+# Outros arquivos e diretórios que podem ser ignorados
+*.log
+*.swp
+.DS_Store
