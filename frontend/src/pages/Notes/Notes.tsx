@@ -95,21 +95,21 @@ function Notes() {
         setnotificacaoPost(true);
         setTimeout(() => {
             setnotificacaoPost(false);
-        }, 5000);
+        }, 2000);
     };
 
     const notificandoAtt = () => {
         setnotificacaoAtt(true);
         setTimeout(() => {
             setnotificacaoAtt(false);
-        }, 5000);
+        }, 2000);
     };
 
     const notificandoDel = () => {
         setnotificacaoDel(true);
         setTimeout(() => {
             setnotificacaoDel(false);
-        }, 5000);
+        }, 2000);
     };
 
     return (
@@ -117,13 +117,13 @@ function Notes() {
             {notificacaoPost ? (
                 <Notificacao
                     mensagem="Post criado com sucesso!"
-                    cor="#e03131"
+                    cor="#37b24d"
                 />
             ) : undefined}
             {notificacaoAtt ? (
                 <Notificacao
                     mensagem="Post atualizado com sucesso!"
-                    cor="#e03131"
+                    cor="#1c7ed6"
                 />
             ) : undefined}
             {notificacaoDel ? (
