@@ -15,15 +15,23 @@ interface Item {
 function Notes() {
     // Criação de itens (create)
     //================================================================
+
     // Controle de estado do nome e descrição da criação
     const [nomeValor, setNomeValor] = useState("");
     const [descValor, setDescValor] = useState("");
+
+    const [caractereRestanteNome, setCaractereRestanteNome] = useState(57);
+    const [caractereRestanteDescricao, setCaractereRestanteDescricao] =
+        useState(88);
+
     // Aqui eu criei separado uma função que seta o valor para o atual valor digitado, ela é disparada sempre que tem mudanças com o evento onchange. Sem ela seria impossível digitar no campo do formulário, já que a variável lá é um state que não mudaria o valor
     const nomeMudanca = (evento: React.ChangeEvent<HTMLInputElement>) => {
         setNomeValor(evento.target.value);
+        setCaractereRestanteNome(57 - evento.target.value.length);
     };
     const descMudanca = (evento: React.ChangeEvent<HTMLInputElement>) => {
         setDescValor(evento.target.value);
+        setCaractereRestanteDescricao(88 - evento.target.value.length);
     };
     // Aqui estou guardando em uma variável react o campo nome do formulário e o de descrição, a ideia é usar como usaria o DOM. Se eu fizesse isso aqui com useState (que também dá pra fazer), ficaria mais pesado porque ia medir cada atualização, já esse vai ser usado só quando enviar.
     const nomeRef = useRef<HTMLInputElement>(null);
@@ -125,21 +133,28 @@ function Notes() {
                 />
             ) : undefined}
             <form onSubmit={submit} className="novoFormulario" action="">
-                <input
-                    value={nomeValor}
-                    ref={nomeRef}
-                    onChange={nomeMudanca}
-                    placeholder="Escreva um nome para a tarefa"
-                    type="text"
-                />
-
-                <input
-                    value={descValor}
-                    ref={descricaoRef}
-                    onChange={descMudanca}
-                    placeholder="Descreva como gostaria de ser lembrado desta tarefa"
-                    type="text"
-                />
+                <div className="formRelative">
+                    <input
+                        maxLength={57}
+                        value={nomeValor}
+                        ref={nomeRef}
+                        onChange={nomeMudanca}
+                        placeholder="Escreva um nome para a tarefa"
+                        type="text"
+                    />
+                    <p className="numeroMaximo">{caractereRestanteNome}</p>
+                </div>
+                <div className="formRelative">
+                    <input
+                        maxLength={88}
+                        value={descValor}
+                        ref={descricaoRef}
+                        onChange={descMudanca}
+                        placeholder="Descreva como gostaria de ser lembrado desta tarefa"
+                        type="text"
+                    />
+                    <p className="numeroMaximo">{caractereRestanteDescricao}</p>
+                </div>
 
                 <div className="botoesForm">
                     <ButtonCommon conteudo="fechar" largura="50%" />

@@ -1,4 +1,44 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap");
+@media (max-width: 1469px) {
+    html {
+        font-size: 55%;
+    }
+}
+@media (max-width: 1305px) {
+    html {
+        font-size: 45%;
+    }
+}
+@media (max-width: 1092px) {
+    html {
+        font-size: 40%;
+    }
+}
+@media (max-width: 981px) {
+    html {
+        font-size: 35%;
+    }
+}
+@media (max-width: 834px) {
+    html {
+        font-size: 30%;
+    }
+}
+@media (max-width: 721px) {
+    html {
+        font-size: 25%;
+    }
+}
+@media (max-width: 597px) {
+    html {
+        font-size: 20%;
+    }
+}
+@media (max-width: 480px) {
+    html {
+        font-size: 15%;
+    }
+}
 
 .paginaCompleta {
     position: relative;
@@ -11,12 +51,26 @@
         flex-direction: column;
         font-family: "Roboto Mono", monospace;
         gap: 1.5rem;
-        input {
-            line-height: 4rem;
-            padding-left: 1rem;
-            font-size: 2rem;
-            outline: none;
+        .formRelative {
+            position: relative;
+            input {
+                width: 100%;
+                line-height: 4rem;
+                padding-left: 1rem;
+                font-size: 2rem;
+                outline: none;
+            }
+            .numeroMaximo {
+                position: absolute;
+                top: 0;
+                left: 99%;
+                transform: translateX(-100%);
+                color: rgba(0, 0, 0, 0.7);
+                font-size: 3rem;
+                z-index: 10;
+            }
         }
+
         .botoesForm {
             display: flex;
             gap: 0.5rem;

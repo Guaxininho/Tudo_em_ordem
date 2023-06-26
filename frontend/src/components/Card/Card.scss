@@ -45,18 +45,18 @@
 
     .flexBotaoCard {
         position: absolute;
-        top: 10px;
+        top: 1rem;
         left: 100%;
         transform: translateX(-100%);
         display: flex;
         gap: 2rem;
         button {
-            width: 50px;
+            width: 6rem;
             background-color: transparent;
             border: none;
             transition: 0.2s;
             &:hover {
-                width: 55px;
+                width: 6.5rem;
                 cursor: pointer;
             }
             img {
