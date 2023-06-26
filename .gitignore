@@ -7,8 +7,7 @@ backend/node_modules/
 backend/build/
 
 # Arquivos e diretórios específicos do MySQL
-mysql/data/
-mysql/*.log
+mysql
 
 # Arquivos de configuração sensíveis
 backend/config/config.js

@@ -43,5 +43,6 @@ services:
       - "8000:8000"
     networks:
       - laravel
+    command: bash -c "php artisan migrate --force && php artisan serve --host=0.0.0.0"
 networks:
   laravel:
