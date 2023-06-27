@@ -7,6 +7,7 @@ Este é um projeto para demonstrar minhas habilidades em desenvolvimento web, ma
 Antes de executar o projeto, certifique-se de ter os seguintes itens instalados em seu ambiente de desenvolvimento:
 
 [Git](https://git-scm.com/)
+
 [Docker](https://www.docker.com/)
 
 ## Clonando o repositório
