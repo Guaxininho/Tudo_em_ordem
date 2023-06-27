@@ -15,20 +15,22 @@ interface Item {
 function Notes() {
     // Criação de itens (create)
     //================================================================
-
-    // Controle de estado do nome e descrição da criação
+    // Estado do nome e descrição da criação
     const [nomeValor, setNomeValor] = useState("");
     const [descValor, setDescValor] = useState("");
 
+    // Estado do contador de caracteres restantes
     const [caractereRestanteNome, setCaractereRestanteNome] = useState(57);
     const [caractereRestanteDescricao, setCaractereRestanteDescricao] =
         useState(88);
 
     // Aqui eu criei separado uma função que seta o valor para o atual valor digitado, ela é disparada sempre que tem mudanças com o evento onchange. Sem ela seria impossível digitar no campo do formulário, já que a variável lá é um state que não mudaria o valor
+    // Mudança do nome
     const nomeMudanca = (evento: React.ChangeEvent<HTMLInputElement>) => {
         setNomeValor(evento.target.value);
         setCaractereRestanteNome(57 - evento.target.value.length);
     };
+    // Mudança da descrição
     const descMudanca = (evento: React.ChangeEvent<HTMLInputElement>) => {
         setDescValor(evento.target.value);
         setCaractereRestanteDescricao(88 - evento.target.value.length);
@@ -37,6 +39,7 @@ function Notes() {
     const nomeRef = useRef<HTMLInputElement>(null);
     const descricaoRef = useRef<HTMLInputElement>(null);
 
+    // O evento submit linkado ao formulário de criação de anotações
     const submit = (evento: FormEvent) => {
         evento.preventDefault(); // prevenindo que ele atualize a página que é o comportamento padrão
         if (nomeRef.current && descricaoRef.current) {
@@ -65,7 +68,7 @@ function Notes() {
     // Leitura e renderização dos itens em cards (read)
     //================================================================
     const [items, setItems] = useState<Item[]>([]);
-    const [carregando, setCarregando] = useState(true); // Estado para controlar o carregamento dos dados
+    const [carregando, setCarregando] = useState(true); // Estado para controlar o carregamento dos dados, enquanto está true quer dizer que ainda está buscando os dados para renderizar, eu uso isso para fazer o texto "carregando" ser exibido até o carregamento ser concluído.
 
     const renderizandoItems = () => {
         axiosClient
@@ -85,7 +88,7 @@ function Notes() {
     }, []);
 
     // Atualização e exclusão estão no componente Card (update, delete)
-    // Lógica para notificações que vem dos filhos
+    // Lógica para sistema de notificações que vem dos filhos
     //================================================================
     const [notificacaoPost, setnotificacaoPost] = useState(false);
     const [notificacaoAtt, setnotificacaoAtt] = useState(false);
